@@ -15,7 +15,7 @@ Prometheus can be used for all the custom use cases.
 The core pieces to make this work with the OAuth proxy deployed in any OpenShift cluster are:
 * ClusterRoleBinding that enables access to the `openshift-monitoring` namespace where the Cluster Monitoring Prometheus is deployed. I am reusing an existing ClusterRole created by the monitoring stack.
 * A Role deployed to the `openshift-monitoring` that enables access to resources for the "federated Prometheus" to discover the Cluster Monitoring Prometheus service.
-* A ServiceMonitor that configures the `/federate` target including the TLS config to get passed the OAuth proxy.
+* A ServiceMonitor that configures the `/federate` target including the TLS config to get past the OAuth proxy.
 
 I am using the [Prometheus Operator](https://github.com/coreos/prometheus-operator) for the ease of configuring all the different objects. But you don't need to use it and instead create a deployment and a target configuration.
 

@@ -12,20 +12,20 @@ spec:
   endpoints:
   - interval: 30s
     params:
-      match[]:
+      match[]: # federate config / what metrics i want
       - '{job="prometheus"}'
       - '{__name__=~"job:.*"}'
-    path: /federate
+    path: /federate # endpoint to scrape
     port: web
-    scheme: https
-    tlsConfig:
+    scheme: https # important
+    tlsConfig: # important
       caFile: /var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
       serverName: prometheus-k8s.openshift-monitoring.svc
-    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token #important
   jobLabel: app
   namespaceSelector:
     matchNames:
-    - openshift-monitoring
+    - openshift-monitoring # where the Cluster Monitoring Prometheus is running
   selector:
     matchLabels:
       prometheus: k8s
