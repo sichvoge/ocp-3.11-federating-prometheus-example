@@ -10,7 +10,7 @@ and cluster metrics.
 Federation enables people to scrape specific metrics from the Cluster Monitoring Prometheus by configuring a "federated Prometheus". That 
 Prometheus can be used for all the custom use cases.
 
-**Please be aware that this setup only works for 3.11 and some bits and pieces will most probably change with OpenShift 4.0. Hence, the OpenShift team does not offer any support for the configuration setup.**
+**Please be aware that this setup only works for 3.11 and some bits and pieces will most probably change with OpenShift 4.0. Hence, the OpenShift team does not offer any support for a federated setup targeting the OOTB Cluster Monitoring Prometheus.**
 
 The core pieces to make this work with the OAuth proxy deployed in any OpenShift cluster are:
 * ClusterRoleBinding that enables access to the `openshift-monitoring` namespace where the Cluster Monitoring Prometheus is deployed. I am reusing an existing ClusterRole created by the monitoring stack.
