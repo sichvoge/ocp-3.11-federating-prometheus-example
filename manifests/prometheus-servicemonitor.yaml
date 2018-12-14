@@ -1,0 +1,31 @@
+# Descibes the federation scraping config and the security
+# config to get passed the OpenShift OAuth proxy (see 
+# tlsConfig section + bearerTokenFile).
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    prometheus: christian
+  name: federate
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 30s
+    params:
+      match[]:
+      - '{job="prometheus"}'
+      - '{__name__=~"job:.*"}'
+    path: /federate
+    port: web
+    scheme: https
+    tlsConfig:
+      caFile: /var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
+      serverName: prometheus-k8s.openshift-monitoring.svc
+    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+  jobLabel: app
+  namespaceSelector:
+    matchNames:
+    - openshift-monitoring
+  selector:
+    matchLabels:
+      prometheus: k8s

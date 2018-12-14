@@ -1,0 +1,15 @@
+# Bind our custom role for service discovery to
+# to the federated Prometheus service account.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: prometheus-christian
+  namespace: openshift-monitoring
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: prometheus-christian
+subjects:
+- kind: ServiceAccount
+  name: prometheus-sa
+  namespace: monitoring

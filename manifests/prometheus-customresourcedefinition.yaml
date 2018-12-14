@@ -1,0 +1,29 @@
+# Describes the Prometheus object we are
+# going to deploy into our OpenShift
+# cluster.
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  labels:
+    prometheus: christian
+  name: christian
+  namespace: monitoring
+spec:
+  baseImage: quay.io/prometheus/prometheus
+  nodeSelector:
+    beta.kubernetes.io/os: linux
+  replicas: 2
+  resources:
+    requests:
+      memory: 400Mi
+  ruleSelector:
+    matchLabels:
+      prometheus: christian
+      role: alert-rules
+  securityContext: {}
+  serviceAccountName: prometheus-sa
+  serviceMonitorNamespaceSelector: {}
+  serviceMonitorSelector:
+    matchLabels:
+      prometheus: christian
+  version: v2.5.0

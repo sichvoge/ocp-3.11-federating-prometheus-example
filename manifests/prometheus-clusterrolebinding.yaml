@@ -1,0 +1,16 @@
+# Bind the cluster-monitoring-view ClusterRole
+# to the federated Prometheus service account.
+# This makes sure to have read access to the
+# openshift-monitoring namespace.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus-crb
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-monitoring-view
+subjects:
+- kind: ServiceAccount
+  name: prometheus-sa
+  namespace: monitoring

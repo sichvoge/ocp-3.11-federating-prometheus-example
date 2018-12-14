@@ -1,0 +1,13 @@
+# Just a small route to expose our federated 
+# Prometheus.
+apiVersion: v1
+kind: Route
+metadata:
+  name: prometheus-christian
+  namespace: monitoring
+spec:
+  port:
+    targetPort: web
+  to:
+    kind: Service
+    name: prometheus-christian
