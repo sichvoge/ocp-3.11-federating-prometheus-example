@@ -19,6 +19,13 @@ The core pieces to make this work with the OAuth proxy deployed in any OpenShift
 
 I am using the [Prometheus Operator](https://github.com/coreos/prometheus-operator) for the ease of configuring all the different objects. But you don't need to use it and instead create a deployment and a target configuration.
 
-Known limitation:
+## Installation
+
+```
+oc create namespace monitoring
+oc apply -f manifests
+```
+
+## Known limitation:
 
 The Cluster Monitoring stack deployes two instances of Prometheus and both are going through a single service. Hence, the "federate Prometheus" will constantly switch between both instances creating small scraping gaps. This is still a problem and currently under investigation. Again, this is another reason that this setup is not supported by the Red Hat team. A workaround is to use a target configuration instead of a `ServiceMonitor` CRD and configure scraping from a specific Prometheus instance instead of the service.
