@@ -17,7 +17,7 @@ The core pieces to make this work with the OAuth proxy deployed in any OpenShift
 * A Role deployed to the `openshift-monitoring` that enables access to resources for the "federated Prometheus" to discover the Cluster Monitoring Prometheus service.
 * A ServiceMonitor that configures the `/federate` target including the TLS config to get passed the OAuth proxy.
 
-I am using the [Prometheus Operator](https://github.com/coreos/prometheus-operator) for the ease of configuring all that. But you don't need to use it and simple create a deployment instead of a `Prometheus` CRD and a target configuration instead of a `ServiceMonitor` CRD.
+I am using the [Prometheus Operator](https://github.com/coreos/prometheus-operator) for the ease of configuring all the different objects. But you don't need to use it and instead create a deployment and a target configuration.
 
 Known limitation:
 
